@@ -18,5 +18,12 @@
 import pickle
 
 enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
+#poi_data = open("../final_project/poi_names.txt", "r")
 
-
+poi_number  = sum(1 for data in enron_data.values() if data['poi'])
+have_salary = sum(1 for data in enron_data.values() if data['total_payments'] != 'NaN' and data['poi'])
+no_salary   = sum(1 for data in enron_data.values() if data['total_payments'] == 'NaN' and data['poi'])
+print poi_number
+print have_salary
+print no_salary
+print float(no_salary) / (have_salary+no_salary)
